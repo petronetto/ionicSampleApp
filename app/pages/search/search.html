@@ -7,11 +7,12 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content class="search">
   <ion-searchbar
-    (ionInput)="keyHasBeenPressed($event)"
+    [(ngModel)]="keyword"
+    (keyup)="keyHasBeenPressed($event)"
     [showCancelButton]="true"
+    (ionCancel)="userPressedCancel()"
   >
   </ion-searchbar>
   <ion-list>

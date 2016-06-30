@@ -1,12 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
 import { App, ionicBootstrap, Platform, Nav } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
+import {HTTP_PROVIDERS, Http} from '@angular/http';
 
 import { SearchPage } from './pages/search/search';
 import { SettingsPage } from './pages/settings/settings';
 
 @Component({
-  templateUrl: 'build/app.html'
+  templateUrl: 'build/app.html',
+  providers: [HTTP_PROVIDERS]
 })
 class MyApp {
   @ViewChild(Nav) nav: Nav;
