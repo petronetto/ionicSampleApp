@@ -47,7 +47,6 @@ export class SearchPage {
               (item) => item.kind === 'feature-movie'
             );
             this.usesFilter = true;
-            console.log(this._unfilteredResults);
           }
         },
         {
