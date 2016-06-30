@@ -2,6 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { NavController, ActionSheet } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { Itunes } from '../../providers/itunes/itunes';
+import { Modal, Platform, NavParams, ViewController } from 'ionic-angular';
+import { PreviewModalPage } from '../preview-modal/preview-modal';
 
 @Component({
   templateUrl: 'build/pages/search/search.html',
@@ -73,7 +75,13 @@ export class SearchPage {
       ]
     })
     this.nav.present(sheet);
-    //console.log(this._unfilteredResults);
+  }
+
+  openPreview(track) {
+    let modal = Modal.create(PreviewModalPage, {
+      track: track
+    });
+    this.nav.present(modal);
   }
 
 }
