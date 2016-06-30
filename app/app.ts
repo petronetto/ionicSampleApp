@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { App, ionicBootstrap, Platform, Nav } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
 
-import { TestesPage } from './pages/testes/testes';
 import { SearchPage } from './pages/search/search';
 import { SettingsPage } from './pages/settings/settings';
 
@@ -21,7 +20,6 @@ class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Testes', component: TestesPage },
       { title: 'Search', component: SearchPage },
       { title: 'Settings', component: SettingsPage }
     ];
