@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { NavController, ActionSheet } from 'ionic-angular';
+import { NavController, ActionSheet, Keyboard } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { Itunes } from '../../providers/itunes/itunes';
 import { Modal, Platform, NavParams, ViewController } from 'ionic-angular';
@@ -16,7 +16,11 @@ export class SearchPage {
   usesFilter: boolean;
   _unfilteredResults: Array<any>;
 
-  constructor(private nav: NavController, private itunes: Itunes) {
+  constructor(
+      private nav: NavController,
+      private itunes: Itunes,
+      private keyboard: Keyboard
+  ) {
     this.nav = nav;
     this.results = [];
     this._unfilteredResults = [];
@@ -27,6 +31,7 @@ export class SearchPage {
 
   keyHasBeenPressed(e) {
     if (e.keyIdentifier === 'Enter') {
+      this.keyboard.close();
       this.itunes.search(this.keyword).then((results) => {
         this.results = results;
         this._unfilteredResults = results;
