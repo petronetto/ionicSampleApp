@@ -14,8 +14,6 @@ export class PreviewModalPage {
   ) {
     this.nav = nav;
     this.viewCtrl = viewCtrl;
-
-    console.debug(params.data);
     this.track = params.data.track;
   }
 

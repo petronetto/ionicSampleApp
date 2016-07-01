@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import { Itunes } from '../../providers/itunes/itunes';
 import { Modal, Platform, NavParams, ViewController } from 'ionic-angular';
 import { PreviewModalPage } from '../preview-modal/preview-modal';
+import * as lodash from 'lodash';
 
 @Component({
   templateUrl: 'build/pages/search/search.html',
@@ -36,6 +37,7 @@ export class SearchPage {
 
   userPressedCancel() {
     this.keyword = '';
+    this.results = this._unfilteredResults;
   }
 
   openFilters() {
@@ -82,6 +84,15 @@ export class SearchPage {
       track: track
     });
     this.nav.present(modal);
+  }
+
+  reloadData(refresher) {
+    this.results = [];
+    this.itunes.search(this.keyword)
+      .then(results => {
+        refresher.complete();
+        this.results = lodash.shuffle(results);
+      });
   }
 
 }

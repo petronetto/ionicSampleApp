@@ -15,6 +15,9 @@
 </ion-header>
 
 <ion-content class="search">
+  <ion-refresher (ionRefresh)="reloadData($event)">
+    <ion-refresher-content refreshingSpinner="circles"></ion-refresher-content>
+  </ion-refresher>
   <ion-searchbar
     [(ngModel)]="keyword"
     (keyup)="keyHasBeenPressed($event)"
