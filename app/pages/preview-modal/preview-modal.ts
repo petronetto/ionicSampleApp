@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Modal, Platform, NavController, NavParams, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ViewController } from 'ionic-angular';
 
 @Component({
   templateUrl: 'build/pages/preview-modal/preview-modal.html',

@@ -14,7 +14,7 @@ export class Itunes {
   search(keyword) {
     let params = new URLSearchParams(
       'callback=JSONP_CALLBACK'
-    )
+    );
     params.set('term', keyword);
     return this.jsonp.request(
       'https://itunes.apple.com/search',

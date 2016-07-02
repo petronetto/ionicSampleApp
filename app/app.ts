@@ -1,8 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { App, ionicBootstrap, Platform, Nav } from 'ionic-angular';
+import { ionicBootstrap, Platform, Nav } from 'ionic-angular';
 import { StatusBar } from 'ionic-native';
 import { HTTP_PROVIDERS, JSONP_PROVIDERS } from '@angular/http';
-
 import { SearchPage } from './pages/search/search';
 import { SettingsPage } from './pages/settings/settings';
 
@@ -15,7 +14,7 @@ class MyApp {
 
   rootPage: any = SearchPage;
 
-  pages: Array<{title: string, component: any}>
+  pages: Array<{title: string, component: any}>;
 
   constructor(private platform: Platform) {
     this.initializeApp();

@@ -1,8 +1,7 @@
-import { Component, Inject } from '@angular/core';
-import { NavController, ActionSheet, Keyboard } from 'ionic-angular';
-import { Http } from '@angular/http';
+import { Component } from '@angular/core';
+import { NavController, ActionSheet, Keyboard, Alert } from 'ionic-angular';
 import { Itunes } from '../../providers/itunes/itunes';
-import { Modal, Platform, NavParams, ViewController } from 'ionic-angular';
+import { Modal } from 'ionic-angular';
 import { PreviewModalPage } from '../preview-modal/preview-modal';
 import * as lodash from 'lodash';
 
@@ -29,15 +28,53 @@ export class SearchPage {
     this.itunes = itunes;
   }
 
+  search() {
+    this.itunes.search(this.keyword).then((results) => {
+      if(!results.length) {
+        let alert = Alert.create({
+          title: 'The iTunes says:',
+          subTitle: 'No match found',
+          buttons: ["I'll try again"]
+        });
+        this.nav.present(alert);
+      }
+      this.results = results;
+      this._unfilteredResults = results;
+      this.usesFilter = false;
+    });
+  }
+
   keyHasBeenPressed(e) {
-    if (e.keyIdentifier === 'Enter') {
-      this.keyboard.close();
-      this.itunes.search(this.keyword).then((results) => {
-        this.results = results;
-        this._unfilteredResults = results;
-        this.usesFilter = false;
+    //this.keyboard.close();
+    if (this.keyword === '') {
+      let alert = Alert.create({
+        title: 'Empty search is not alllowed',
+        subTitle: 'Please key in your search',
+        buttons: [
+          'Cancel',
+          {
+            text: 'Search',
+            handler: data => {
+              if (data.term) {
+                this.keyword = data.term;
+                this.search();
+              } else {
+                return false;
+              }
+            }
+          }
+        ],
+        inputs: [
+          {
+            name: 'term',
+            placeholder: 'Search for...'
+          }
+        ]
       });
+      this.nav.present(alert);
+      return;
     }
+    this.search();
   }
 
   userPressedCancel() {
@@ -80,15 +117,27 @@ export class SearchPage {
           style: 'cancel',
         }
       ]
-    })
+    });
     this.nav.present(sheet);
   }
 
   openPreview(track) {
-    let modal = Modal.create(PreviewModalPage, {
-      track: track
+    let alert = Alert.create({
+      title: 'Open preview?',
+      buttons: [
+        'No',
+        {
+          text: 'Yes',
+          handler: () => {
+            let modal = Modal.create(PreviewModalPage, {
+              track: track
+            });
+            this.nav.present(modal);
+          }
+        }
+      ]
     });
-    this.nav.present(modal);
+    this.nav.present(alert);
   }
 
   reloadData(refresher) {

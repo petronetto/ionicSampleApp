@@ -20,7 +20,7 @@
   </ion-refresher>
   <ion-searchbar
     [(ngModel)]="keyword"
-    (keyup)="keyHasBeenPressed($event)"
+    (keyup.enter)="keyHasBeenPressed($event)"
     [showCancelButton]="true"
     (ionCancel)="userPressedCancel()"
   >
