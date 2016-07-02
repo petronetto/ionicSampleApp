@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, ActionSheet, Keyboard, Alert } from 'ionic-angular';
+import { NavController, ActionSheet, Keyboard, Alert, Loading } from 'ionic-angular';
 import { Itunes } from '../../providers/itunes/itunes';
 import { Modal } from 'ionic-angular';
 import { PreviewModalPage } from '../preview-modal/preview-modal';
@@ -29,19 +29,29 @@ export class SearchPage {
   }
 
   search() {
-    this.itunes.search(this.keyword).then((results) => {
-      if(!results.length) {
-        let alert = Alert.create({
-          title: 'The iTunes says:',
-          subTitle: 'No match found',
-          buttons: ["I'll try again"]
-        });
-        this.nav.present(alert);
-      }
-      this.results = results;
-      this._unfilteredResults = results;
-      this.usesFilter = false;
+    let loading = Loading.create({
+      content: "Please wait...",
+      dismissOnPageChange: true
     });
+    this.nav.present(loading);
+
+    setTimeout(() => {
+      this.itunes.search(this.keyword).then((results) => {
+        if(!results.length) {
+          let alert = Alert.create({
+            title: 'The iTunes says:',
+            subTitle: 'No match found',
+            buttons: ["I'll try again"]
+          });
+          loading.dismiss();
+          this.nav.present(alert);
+        }
+        loading.dismiss();
+        this.results = results;
+        this._unfilteredResults = results;
+        this.usesFilter = false;
+      });
+    }, 1000);
   }
 
   keyHasBeenPressed(e) {
