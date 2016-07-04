@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{artist.name}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content pager class="artist">
+  <ion-slides id="album-slides">
+    <ion-slide *ngFor="let album of albuns">
+      <h3>{{album.collectionName}}</h3>
+      <img [src]="album.artworkUrl100">
+    </ion-slide>
+  </ion-slides>
+</ion-content>

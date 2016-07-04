@@ -5,6 +5,7 @@ import { HTTP_PROVIDERS, JSONP_PROVIDERS } from '@angular/http';
 import { SearchPage } from './pages/search/search';
 import { SettingsPage } from './pages/settings/settings';
 import { ContactusPage } from './pages/contactus/contactus';
+import { SliderPage } from './pages/slider/slider';
 
 @Component({
   templateUrl: 'build/app.html',
@@ -24,7 +25,8 @@ class MyApp {
     this.pages = [
       { title: 'Search', component: SearchPage },
       { title: 'Settings', component: SettingsPage },
-      { title: 'Contact Us', component: ContactusPage }
+      { title: 'Contact Us', component: ContactusPage },
+      { title: 'Slider', component: SliderPage }
     ];
 
   }

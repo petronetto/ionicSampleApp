@@ -1,9 +1,11 @@
+
 import { Component } from '@angular/core';
 import { NavController, ActionSheet, Keyboard, Alert, Loading } from 'ionic-angular';
 import { Itunes } from '../../providers/itunes/itunes';
 import { Modal } from 'ionic-angular';
 import { PreviewModalPage } from '../preview-modal/preview-modal';
 import * as lodash from 'lodash';
+import { ArtistPage } from '../artist/artist';
 
 @Component({
   templateUrl: 'build/pages/search/search.html',
@@ -47,6 +49,7 @@ export class SearchPage {
           this.nav.present(alert);
         }
         loading.dismiss();
+        console.log(results);
         this.results = results;
         this._unfilteredResults = results;
         this.usesFilter = false;
@@ -148,6 +151,13 @@ export class SearchPage {
       ]
     });
     this.nav.present(alert);
+  }
+
+  goToArtist(artist) {
+    this.nav.push(ArtistPage, {
+      id: artist.artistId,
+      name: artist.artistName
+    });
   }
 
   reloadData(refresher) {

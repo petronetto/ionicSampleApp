@@ -32,9 +32,17 @@
       </ion-thumbnail>
       <h2 [innerText]="result.trackName"></h2>
       <p>{{result.artistName}}</p>
-      <ion-icon (click)="openPreview(result)" name="musical-notes" [hidden]="result.kind!=='song'" item-right></ion-icon>
-      <ion-icon (click)="openPreview(result)" name="film" [hidden]="result.kind==='song'" item-right></ion-icon>
-      <ion-icon name="person" [hidden]="result.kind!=='song'" item-right></ion-icon>
+      <ion-icon
+        (click)="openPreview(result)" name="musical-notes"
+        [hidden]="result.kind!=='song'" item-right
+      ></ion-icon>
+      <ion-icon
+        (click)="openPreview(result)" name="film"
+        [hidden]="result.kind==='song'" item-right
+      ></ion-icon>
+      <ion-icon
+        (click)="goToArtist(result)" name="person" item-right
+      ></ion-icon>
     </ion-item>
   </ion-list>
 </ion-content>
