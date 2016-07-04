@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Contact Us</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="contactus">
+  <form [ngFormModel]="contactForm">
+    <ion-list>
+
+      <ion-item>
+        <ion-label floating>Name</ion-label>
+        <ion-input type="text" ngControl="name"></ion-input>
+      </ion-item>
+      <p text-center danger
+        [hidden]="contactForm.controls.name.untouched || contactForm.controls.name.valid"
+      >Please provide your name</p>
+
+      <ion-item>
+        <ion-label floating>E-mail</ion-label>
+        <ion-input type="text" ngControl="email"></ion-input>
+      </ion-item>
+      <p text-center danger
+        [hidden]="contactForm.controls.email.pristine || contactForm.controls.email.valid"
+      >Please provide your e-mail</p>
+
+    </ion-list>
+
+    <div padding>
+      <button primary block (click)="submitForm()">Send</button>
+    </div>
+  </form>
+</ion-content>

@@ -4,6 +4,7 @@ import { StatusBar } from 'ionic-native';
 import { HTTP_PROVIDERS, JSONP_PROVIDERS } from '@angular/http';
 import { SearchPage } from './pages/search/search';
 import { SettingsPage } from './pages/settings/settings';
+import { ContactusPage } from './pages/contactus/contactus';
 
 @Component({
   templateUrl: 'build/app.html',
@@ -22,7 +23,8 @@ class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Search', component: SearchPage },
-      { title: 'Settings', component: SettingsPage }
+      { title: 'Settings', component: SettingsPage },
+      { title: 'Contact Us', component: ContactusPage }
     ];
 
   }
