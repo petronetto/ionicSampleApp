@@ -8,23 +8,16 @@
 </ion-header>
 
 <ion-content padding class="settings">
-  <ion-list radio-group>
-    <ion-list-header *ngIf="!selectedCountry">Pick a country</ion-list-header>
-    <ion-list-header *ngIf="selectedCountry">Country selected:
-      <p
-        [innerText]="selectedCountry.local_name"
-        [style.direction]="selectedCountry.rtl ? 'rtl' : 'ltr'"
-      ></p>
+  <ion-list radio-group [(ngModel)]="selectCountryModel">
+    <ion-list-header *ngIf="!selectCountry">Pick a country</ion-list-header>
+    <ion-list-header *ngIf="selectCountry">Country selected: <p [style.direction]="selectCountry.rtl ? 'rtl' : 'ltr'" [innerText]="selectCountry.local_name"></p>
     </ion-list-header>
-    <ion-item
-      *ngFor="let country of countries"
-      [class.active]="selectedCountry === country"
-    >
-      <ion-label>{{country.name}}</ion-label>
-      <ion-radio
-        (click)="selectedCountry = country"
-        [value]="country.code"
-      ></ion-radio>
+    <ion-item *ngFor="let country of countries" [class.active]="selectCountry === country">
+      <ion-label>
+        {{country.name}}
+      </ion-label>
+      <ion-radio [value]="country.code" (click)="select(country)">
+      </ion-radio>
     </ion-item>
   </ion-list>
 </ion-content>

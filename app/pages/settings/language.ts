@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
 
 export class LanguageSetting {
   country: any;
-
   countries = [
     {
       name: 'United States',

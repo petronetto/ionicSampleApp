@@ -11,9 +11,7 @@ export class Itunes extends LanguageSetting {
   settings: any;
   country: any;
 
-  constructor(
-    private jsonp: Jsonp
-  ) {
+  constructor(private jsonp: Jsonp) {
     super();
     this.data = null;
   }

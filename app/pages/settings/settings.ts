@@ -4,19 +4,18 @@ import { LanguageSetting } from './language';
 
 @Component({
   templateUrl: 'build/pages/settings/settings.html',
-  viewProviders: [LanguageSetting]
+  //viewProviders: [LanguageSetting]
 })
 export class SettingsPage {
-  countries: any;
-  selectCountry: any;
+  public selectCountry: any;
+  public countries: any;
 
   select(country) {
-    this.selectCountry = country
+    this.selectCountry = country;
     // Also keep inside service
     this.setting.country = country;
   }
   constructor(private nav: NavController, private setting: LanguageSetting) {
     this.countries = setting.countries;
   }
-
 }

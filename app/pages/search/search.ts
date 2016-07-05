@@ -1,10 +1,10 @@
 
 import { Component } from '@angular/core';
-import { NavController, ActionSheet, Keyboard, Alert, Loading } from 'ionic-angular';
-import { Itunes } from '../../providers/itunes/itunes';
+import { NavController, ActionSheet, Alert, Loading } from 'ionic-angular';
 import { Modal } from 'ionic-angular';
-import { PreviewModalPage } from '../preview-modal/preview-modal';
+import { Itunes } from '../../providers/itunes/itunes';
 import * as lodash from 'lodash';
+import { PreviewModalPage } from '../preview-modal/preview-modal';
 import { ArtistPage } from '../artist/artist';
 
 @Component({
@@ -17,11 +17,7 @@ export class SearchPage {
   usesFilter: boolean;
   _unfilteredResults: Array<any>;
 
-  constructor(
-      private nav: NavController,
-      private itunes: Itunes,
-      private keyboard: Keyboard
-  ) {
+  constructor(private nav: NavController, private itunes: Itunes) {
     this.nav = nav;
     this.results = [];
     this._unfilteredResults = [];
@@ -49,7 +45,6 @@ export class SearchPage {
           this.nav.present(alert);
         }
         loading.dismiss();
-        console.log(results);
         this.results = results;
         this._unfilteredResults = results;
         this.usesFilter = false;
